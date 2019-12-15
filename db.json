@@ -1,22 +1,54 @@
 {
   "people": [
-    { "id": 1, 
-      "first_name": "name", 
-      "second_name": "name", 
-      "middle_name": "name", 
-      "series": 0000, 
-      "number": 000000, 
-      "email": "example@email.ru", 
-      "telephone": "+7(999)999-99-99" 
+    {
+      "id": 2,
+      "firstName": "name",
+      "secondName": "name",
+      "middleName": "name",
+      "series": "2000",
+      "number": "200000",
+      "email": "example@email.ru",
+      "telephone": "+7(999)999-99-99"
     },
-    { "id": 1, 
-      "first_name": "name", 
-      "second_name": "name", 
-      "middle_name": "name", 
-      "series": 0000, 
-      "number": 000000, 
-      "email": "example@email.ru", 
-      "telephone": "+7(999)999-99-99" 
+    {
+      "firstName": "ww",
+      "secondName": "pp",
+      "middleName": "cc",
+      "series": "8888",
+      "number": "333333",
+      "email": "i@mail.ru",
+      "telephone": "+7(888)888-88-88",
+      "id": 4
+    },
+    {
+      "firstName": "bb",
+      "secondName": "uu",
+      "middleName": "oo",
+      "series": "9999",
+      "number": "555555",
+      "email": "u@mail.ru",
+      "telephone": "+7(777)777-77-77",
+      "id": 5
+    },
+    {
+      "firstName": "tt",
+      "secondName": "tt",
+      "middleName": "tt",
+      "series": "9999",
+      "number": "777777",
+      "email": "t@mail.ru",
+      "telephone": "+7(999)999-99-99",
+      "id": 7
+    },
+    {
+      "firstName": "oo",
+      "secondName": "pp",
+      "middleName": "ii",
+      "series": "9999",
+      "number": "777777",
+      "email": "e@mail.ru",
+      "telephone": "+7(888)888-88-88",
+      "id": 9
     }
   ]
 }

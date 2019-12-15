@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MaskedInput from "react-text-mask";
 import { telephoneReg, seriesReg, numberReg } from "../../regex/regex";
+import { deletePerson, changePerson } from "../../utilities/fetch";
 import validator from "email-validator";
 
 export default class Person extends Component {
@@ -34,10 +35,23 @@ export default class Person extends Component {
       this.state.telephone
     );
     this.changeMode();
+    changePerson(
+      {
+        firstName: this.state.firstName,
+        secondName: this.state.secondName,
+        middleName: this.state.middleName,
+        series: this.state.series,
+        number: this.state.number,
+        email: this.state.email,
+        telephone: this.state.telephone
+      },
+      this.props.id
+    );
   };
 
   deletePerson = () => {
     this.props.deletePerson(this.props.id);
+    deletePerson(this.props.id);
   };
 
   handleInput = e => {
@@ -66,91 +80,97 @@ export default class Person extends Component {
 
     if (this.state.mode === "read") {
       return (
-        <div className="d-flex justify-content-between align-items-center mb-2">
-          <div className="d-flex justify-content-between w-75">
-            <div>{this.state.id}</div>
-            <div>{this.state.firstName}</div>
-            <div>{this.state.secondName}</div>
-            <div>{this.state.middleName}</div>
-            <div>{this.state.series}</div>
-            <div>{this.state.number}</div>
-            <div>{this.state.email}</div>
-            <div>{this.state.telephone}</div>
-          </div>
-          <div className="d-flex justify-content-end w-25">
+        <tr>
+          <th>{this.props.id}</th>
+          <td>{this.state.firstName}</td>
+          <td>{this.state.secondName}</td>
+          <td>{this.state.middleName}</td>
+          <td>{this.state.series}</td>
+          <td>{this.state.number}</td>
+          <td>{this.state.email}</td>
+          <td>{this.state.telephone}</td>
+          <td>
             <button className="btn btn-warning" onClick={this.changeMode}>
-              Сохранить
+              Изменить
             </button>
+          </td>
+          <td>
             <button className="btn btn-danger ml-4" onClick={this.deletePerson}>
               Удалить
             </button>
-          </div>
-        </div>
+          </td>
+        </tr>
       );
     } else if (this.state.mode === "edit") {
       return (
-        <div className="d-flex justify-content-between mb-2">
-          <div className="d-flex justify-content-between w-75">
+        <tr>
+          <th>{this.props.id}</th>
+          <td>
             <input
-              className="form-control"
-              type="number"
-              name="id"
-              value={this.state.id}
-              onChange={this.handleInput}
-            />
-            <input
-              className="form-control"
+              className="form-control bg-secondary text-light w-100"
               type="text"
               name="firstName"
               placeholder="Введите имя"
               value={this.state.firstName}
               onChange={this.handleInput}
             />
+          </td>
+          <td>
             <input
-              className="form-control"
+              className="form-control bg-secondary text-light w-100"
               type="text"
               name="secondName"
               placeholder="Введите фамилию"
               value={this.state.secondName}
               onChange={this.handleInput}
             />
+          </td>
+          <td>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-secondary text-light w-100"
               placeholder="Введите отчество"
               value={this.state.middleName}
               name="middleName"
               onChange={this.handleInput}
             />
+          </td>
+          <td>
             <MaskedInput
               mask={[/\d/, /\d/, /\d/, /\d/]}
               guide={true}
               keepCharPositions={true}
-              className="form-control"
+              className="form-control bg-secondary text-light w-100"
               placeholder="0000"
               value={this.state.series}
               name="series"
               onChange={this.handleInput}
             />
+          </td>
+          <td>
             <MaskedInput
               mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
               guide={true}
               keepCharPositions={true}
-              className="form-control"
+              className="form-control bg-secondary text-light w-100"
               placeholder="000000"
               value={this.state.number}
               name="number"
               onChange={this.handleInput}
             />
+          </td>
+          <td>
             <input
               type="email"
-              className="form-control"
+              className="form-control bg-secondary text-light w-100"
               placeholder="example@mail.com"
               value={this.state.email}
               name="email"
               onChange={this.handleInput}
               required
             />
+          </td>
+          <td>
             <MaskedInput
               mask={[
                 "+",
@@ -172,7 +192,7 @@ export default class Person extends Component {
               ]}
               guide={true}
               keepCharPositions={true}
-              className="form-control"
+              className="form-control bg-secondary text-light w-100"
               id="inputTelephone"
               placeholder="+7(999)999-99-99"
               value={this.state.telephone}
@@ -180,8 +200,8 @@ export default class Person extends Component {
               onChange={this.handleInput}
               required
             />
-          </div>
-          <div className="d-flex justify-content-end w-25">
+          </td>
+          <td>
             {disabled ? (
               <button className="disabled btn btn-primary" disabled>
                 Сохранить
@@ -191,11 +211,13 @@ export default class Person extends Component {
                 Сохранить
               </button>
             )}
+          </td>
+          <td>
             <button className="btn btn-danger ml-4" onClick={this.deletePerson}>
               Удалить
             </button>
-          </div>
-        </div>
+          </td>
+        </tr>
       );
     }
   }

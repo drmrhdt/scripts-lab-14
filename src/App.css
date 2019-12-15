@@ -41,3 +41,11 @@
 .disabled-btn {
   cursor: auto !important;
 }
+
+.form-control {
+  border: 0 !important;
+}
+
+::placeholder {
+  color: darkgray !important;
+}
