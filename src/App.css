@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.red {
+  color: tomato;
+}
+
+.marked {
+  position: relative;
+}
+
+.marked:after:hover {
+  content: "Обязательное поле!";
+  display: block;
+  color: tomato;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.disabled-btn {
+  cursor: auto !important;
+}

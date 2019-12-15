@@ -1,0 +1,22 @@
+{
+  "people": [
+    { "id": 1, 
+      "first_name": "name", 
+      "second_name": "name", 
+      "middle_name": "name", 
+      "series": 0000, 
+      "number": 000000, 
+      "email": "example@email.ru", 
+      "telephone": "+7(999)999-99-99" 
+    },
+    { "id": 1, 
+      "first_name": "name", 
+      "second_name": "name", 
+      "middle_name": "name", 
+      "series": 0000, 
+      "number": 000000, 
+      "email": "example@email.ru", 
+      "telephone": "+7(999)999-99-99" 
+    }
+  ]
+}
