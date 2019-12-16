@@ -9,6 +9,8 @@ import "./App.css";
 class App extends Component {
   state = {
     people: [],
+    filteredPeople: [],
+    filterInput: "",
     firstName: "",
     secondName: "",
     middleName: "",
@@ -19,7 +21,15 @@ class App extends Component {
   };
 
   onChangeInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      console.log(this.state.filterInput)
+    );
+  };
+
+  onChangeInputFilter = e => {
+    this.setState({ filterInput: e.target.value }, () =>
+      this.filterPeople(this.state.filterInput)
+    );
   };
 
   changePerson = (
@@ -103,11 +113,33 @@ class App extends Component {
     );
   };
 
+  filterPeople = input => {
+    let filteredPeople = this.state.people.filter(
+      person =>
+        person.firstName.toLowerCase().startsWith(input) ||
+        person.secondName.toLowerCase().startsWith(input)
+    );
+    this.setState({ filteredPeople: filteredPeople });
+  };
+
   render() {
     const disabled = !this.isDisabled();
+    let { people } = this.state;
+    if (this.state.filteredPeople.length) {
+      people = this.state.filteredPeople;
+    }
 
     return (
-      <div className="App bg-dark text-light">
+      <div className="App py-3 bg-dark text-light">
+        <input
+          type="text"
+          className="form-control bg-secondary text-light w-75 mx-auto mb-4"
+          id="inputFilter"
+          placeholder="Введите первые буквы имени или фамилии..."
+          value={this.state.filterInput}
+          name="firstName"
+          onChange={this.onChangeInputFilter}
+        />
         <table className="table table-hover table-striped w-75 mx-auto table-dark">
           <thead className="text-light">
             <tr>
@@ -119,17 +151,21 @@ class App extends Component {
               <th>Номер</th>
               <th>Почта</th>
               <th>Телефон</th>
-              <th colspan="2">Управление</th>
+              <th colSpan="2">Управление</th>
             </tr>
           </thead>
           <tbody className="text-light">
             {this.state.people.length ? (
               <List
-                people={this.state.people}
+                people={people}
                 deletePerson={this.deletePerson}
                 changePerson={this.changePerson}
               />
-            ) : null}
+            ) : (
+              <tr>
+                <td>Пока что не записей.</td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div className="w-75 mx-auto pt-4">
