@@ -87,7 +87,7 @@ export default class Person extends Component {
           <td>{this.state.middleName}</td>
           <td>{this.state.series}</td>
           <td>{this.state.number}</td>
-          <td>{this.state.email}</td>
+          <td className="text-wrap text-break">{this.state.email}</td>
           <td>{this.state.telephone}</td>
           <td>
             <button className="btn btn-warning" onClick={this.changeMode}>
